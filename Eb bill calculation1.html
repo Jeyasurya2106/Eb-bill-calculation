@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<head>
+    <title>EB Bill Calculation</title>
+</head>
+<style>
+    body{
+        background-image: url(electricitybg.avif);
+    }
+    table{
+        margin-top: -10px;
+        margin-left: 500px;
+        width: 500px;
+        height: 250px;
+        text-align: center;
+        color: rgb(244, 244, 243);
+        background-color: rgb(26, 25, 23);
+        opacity: 0.8;
+    }
+    h1{
+        color: aliceblue;
+        margin-left: 600px;
+        margin-top: 100px;
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <h1>EB BILL Calculation</h1>
+    <table border >
+        <tr>
+            <td>
+                <label>Unit</label>
+            </td>
+            <td>
+                <input type="number" id="units">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Amount:</label>
+            </td>
+            <td>
+                <input type="number" id="amt" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Service Charge</label>
+            </td>
+            <td>
+                <input type="number" id="charge" readonly> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Net Bill</label>
+            </td>
+            <td>
+                <input type="number" id="net" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="ebcalculator()">Submit</button>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        
+
+function  ebcalculator() {
+    let units = document.getElementById("units").value;
+    let bill = 0;
+    let total = 0;
+    let nb = 0;
+    if (units <= 50) {
+        bill = units * 0.50;
+        nb= bill * 0.20;
+
+
+    } else if (units > 50 && units <= 150) {
+        bill = 25 + (units - 50) * 0.75;
+        nb =bill * 0.20;
+
+    } else if (units > 150 && units <= 250) {
+        bill = 100 + (units - 150) * 1.20;
+        nb = bill * 0.20;
+
+
+    } else {
+        bill = 220 + (units - 250) * 1.50;
+        nb = bill* 0.20;
+
+
+    }
+    total = nb +bill;
+    //  alert(total);
+    document.getElementById("charge").value =nb;
+    document.getElementById("net").value=total;
+    document.getElementById("amt").value=bill;
+
+} 
+
+    </script>
+
+</body>
+
+</html>
+ 
